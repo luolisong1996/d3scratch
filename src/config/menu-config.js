@@ -4,7 +4,7 @@ module.exports = [{
   i: 'el-icon-location',
   sub: [
     {
-      name: 'Layout 布局',
+      name: '简单图表',
       componentName: 'BasicLayout'
     },
     {
