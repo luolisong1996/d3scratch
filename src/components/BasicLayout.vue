@@ -4,6 +4,20 @@
     </div>
     <div id="graph">
     </div>
+    <div id="dynamic">
+    </div>
+    <div id="enter">
+      <div id="enterone">
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
+      <div id="entertwo">
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -17,6 +31,8 @@ export default {
   mounted(){
     this.rectangleecharts()
     this.graphecharts()
+    this.dynamicecharts()
+    this.entercharts()
   },
 
   watch:{
@@ -127,14 +143,15 @@ export default {
       .call(axis);
     },
     graphecharts () {
+      d3.select("#graph").append("span").text("完整柱图").attr("width",30)
       const width = 400
       const height = 400
       let svg = d3.select("#graph").append("svg").attr("width",400).attr("height",400)
       let padding = {left:30,right:30,top:30,bottom:30}
       let dataset = [10,20,30,40,50,24,12,5]
       const rectPadding = 4
-      let xScale = d3.scaleBand().domain(d3.range(dataset.length)).rangeRound([0, 400 - padding.left - padding.right])
-      let yScale = d3.scaleLinear().domain([0,d3.max(dataset)]).range([400-padding.top-padding.bottom,0])
+      let xScale = d3.scaleBand().domain(d3.range(dataset.length)).rangeRound([0, 400 - padding.left - padding.right])   // x轴使用序数比例尺
+      let yScale = d3.scaleLinear().domain([0,d3.max(dataset)]).range([400-padding.top-padding.bottom,0])                // y轴使用线性比例尺
 
       let xAxis = d3.axisBottom(xScale)
       let yAxis = d3.axisLeft(yScale)
@@ -144,18 +161,27 @@ export default {
         return (xScale.bandwidth()+xScale.paddingInner())*i
       })
       .attr('y',(d,i) => {
+        let min = yScale.domain()[0]
+        return yScale(min)
+      }).transition().delay((d,i)=>{return i*200}).duration(1000).ease(d3.easeCircle)
+      .attr('y',(d,i) => {
         return yScale(d)
       })
+
+
       .attr('height',(d,i)=>{
         return 400-padding.top - padding.bottom - yScale(d)
       })
+      
       .attr('width',xScale.bandwidth() - rectPadding)
-      .attr('fill','green')
+      .attr('fill','steelblue')
 
+      // 添加文字元素
       svg.selectAll('text').data(dataset).enter().append('text').attr("transform","translate("+padding.left + ","+ padding.top +")")
       .attr('x',(d,i)=>{
         return (xScale.bandwidth() + xScale.paddingInner()) * i
       })
+
       .attr('y',(d,i)=>{
         return yScale(d)
       })
@@ -169,10 +195,52 @@ export default {
 
       svg.append('g').attr("class","axis").attr("transform",`translate(${padding.left},${400 - padding.bottom})`).call(yAxis)
       svg.selectAll('rect').on("mouseover",function(d,i){
-        d3.select(this).transition().duration(100).attr("fill","steelblue")
+        d3.select(this).transition().duration(100).attr("fill","yellow")
       }).on("mouseout",function(d,i){
-        d3.select(this).transition().duration(500).attr("fill","steelblue")
+        d3.select(this)
+        .transition()                                     // 启动过渡
+        .duration(500)                                    // 指定过渡的时间
+        .attr("fill","steelblue")
       })
+    },
+    dynamicecharts () {
+      // 实现动态的四个方法 transition()启动过渡效果 duration()指定过渡的持续时间 
+      // ease()指定过渡的方式，linear：普通的线性变化  circle：慢慢的到达变换的最终状态  elastic：带有弹跳的到达最终状态 bounce：在最终状态出弹跳几次
+      // dalay()指定延迟时间
+      let svg = d3.select("#dynamic").append("svg").attr("width",500).attr("height",300)
+      let circle = svg.append('circle').attr('cx',0).attr('cy',100).attr('r',45).style('fill',"green")
+      circle.transition().duration(1000).attr("cx",400).style("fill","steelblue")
+      
+      let circle1 = svg.append('circle').attr('cx',0).attr('cy',200).attr('r',45).style('fill','steeblue')
+      circle1.transition().duration(1000).ease(d3.easeBounce).attr('cx',300).style('fill','green').attr('r',25)
+    },
+    entercharts () {
+      let dataset = [3,6,7,12,15]
+      let p =d3.select("#enterone").selectAll('p')
+      let update = p.data(dataset)
+      let enter = update.enter()
+      update.text(function(d){
+        return "update" + d
+      })
+      enter.append("p")
+           .text(function(d){
+             return "enter" + d
+           })
+      // update部分的处理办法一般是：更新属性值
+      // enter部分的处理办法一般是：添加元素后赋予属性值
+
+      let datasetone = [3]
+      let p1 =d3.select("#entertwo").selectAll('p')
+      let updateone = p1.data(datasetone)
+      let exit = updateone.exit()
+      updateone.text(function(d){
+        return "update" + d
+      })
+      exit.append("p")
+           .text(function(d){
+             return "exit"
+           })
+      // exit.move() exit部分的处理通常是删除元素
     }
   }
 }
@@ -188,7 +256,14 @@ export default {
   height: 400px;
   width: 400px;
   /* background-color: #fff; */
-  margin-left: 300px;
+  margin-left: 200px;
+}
+#dynamic{
+  float: left;
+  width: 500px;
+  height: 300px;
+  /* background-color: #fff; */
+  margin-left: 200px;
 }
 #rectangle span{
   height: 30px;
@@ -204,6 +279,20 @@ export default {
 .axis text {
     font-family: sans-serif;
     font-size: 11px;
+}
+#enter{
+  width: 800px;
+  height: 300px;
+  position: absolute;
+  /* background-color: red; */
+  top: 550px;
+  left: calc((70%-200px)/2);
+}
+#enter div{
+  width: 400px;
+  height: 300px;
+  /* background-color: blueviolet; */
+  float: left;
 }
 </style>
 

@@ -8,7 +8,7 @@ module.exports = [{
       componentName: 'BasicLayout'
     },
     {
-      name: 'Container 布局容器',
+      name: '饼状图',
       componentName: 'BasicContainer'
     },
     {
