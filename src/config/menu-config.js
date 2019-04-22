@@ -12,8 +12,16 @@ module.exports = [{
       componentName: 'BasicContainer'
     },
     {
-      name: '选项3',
-      componentName: 'optionThere'
+      name: '力导向图',
+      componentName: 'FormCheckBox'
+    },
+    {
+      name: '树状图',
+      componentName: 'Atree'
+    },
+    {
+      name: '中国地图',
+      componentName: 'TheMap'
     }]
   },
   {

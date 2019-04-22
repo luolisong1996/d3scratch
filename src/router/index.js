@@ -4,6 +4,9 @@ import hello from '../components/HelloWorld.vue'
 import menus from '../config/menu-config'
 import BasicContainer from '../components/BasicContainer.vue'
 import BasicLayout from '../components/BasicLayout.vue'
+import FormCheckBox from '../components/FormCheckBox.vue'
+import Atree from '../components/Atree.vue'
+import TheMap from '../components/TheMap.vue'
 
 Vue.use(VueRouter)
 let router = new VueRouter({
@@ -14,6 +17,15 @@ let router = new VueRouter({
     },{
       path: '/BasicLayout',
       component: BasicLayout
+    },{
+      path: '/FormCheckBox',
+      component: FormCheckBox
+    },{
+      path: '/Atree',
+      component: Atree
+    },{
+      path: '/TheMap',
+      component: TheMap
     }
   ]
 })
