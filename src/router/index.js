@@ -7,6 +7,9 @@ import BasicLayout from '../components/BasicLayout.vue'
 import FormCheckBox from '../components/FormCheckBox.vue'
 import Atree from '../components/Atree.vue'
 import TheMap from '../components/TheMap.vue'
+import particle from '../components/particle.vue'
+import senbosch from '../components/senbosch.vue'
+import skillmap from '../components/skillmap.vue'
 
 Vue.use(VueRouter)
 let router = new VueRouter({
@@ -26,6 +29,15 @@ let router = new VueRouter({
     },{
       path: '/TheMap',
       component: TheMap
+    },{
+      path: '/particle',
+      component: particle
+    },{
+      path: '/senbosch',
+      component: senbosch
+    },{
+      path: '/skillmap',
+      component: skillmap
     }
   ]
 })

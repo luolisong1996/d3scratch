@@ -22,6 +22,18 @@ module.exports = [{
     {
       name: '中国地图',
       componentName: 'TheMap'
+    },
+    {
+      name: 'OMG粒子',
+      componentName: 'particle'
+    },
+    {
+      name: '字符串球',
+      componentName: 'senbosch'
+    },
+    {
+      name: '技能树',
+      componentName: 'skillmap'
     }]
   },
   {
