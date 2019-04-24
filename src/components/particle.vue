@@ -1,5 +1,5 @@
 <template>
-  <div id="body">
+  <div id="particle">
     
   </div>
 </template>
@@ -13,20 +13,20 @@ export default {
     }
   },
   mounted(){
-    this.textone()
+    this.particle()
   },
 
   watch:{
 
   },
   methods:{
-    textone () {
+    particle () {
         var width = Math.max(500, innerWidth),
             height = Math.max(300, innerHeight);
 
         var i = 0;
 
-        var svg = d3.select("#body").append("svg")
+        var svg = d3.select("#particle").append("svg")
             .attr("width", width)
             .attr("height", height);
 
@@ -60,7 +60,8 @@ export default {
 </script>
 
 <style>
-#body {
+
+#particle {
   margin: 0;
   background: #222;
   min-width: 500px;

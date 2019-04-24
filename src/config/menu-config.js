@@ -32,7 +32,7 @@ module.exports = [{
       componentName: 'senbosch'
     },
     {
-      name: '技能树',
+      name: '方圆螺旋幻觉',
       componentName: 'skillmap'
     }]
   },

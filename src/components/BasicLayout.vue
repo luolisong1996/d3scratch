@@ -246,7 +246,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #rectangle{
   width: 300px;
   float: left;
