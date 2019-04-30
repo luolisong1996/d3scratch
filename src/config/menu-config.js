@@ -34,7 +34,24 @@ module.exports = [{
     {
       name: '方圆螺旋幻觉',
       componentName: 'skillmap'
+    },
+    {
+      name: '弦图',
+      componentName: 'Stringfigure'
+    },
+    {
+      name: '打包图',
+      componentName: 'packaging'
+    },
+    {
+      name: '矩形树阵',
+      componentName: 'treemap'
+    },
+    {
+      name: '玫瑰饼图',
+      componentName: 'rose'
     }]
+    // rose
   },
   {
     name: '导航二',

@@ -10,7 +10,11 @@ import TheMap from '../components/TheMap.vue'
 import particle from '../components/particle.vue'
 import senbosch from '../components/senbosch.vue'
 import skillmap from '../components/skillmap.vue'
-
+import Stringfigure from '../components/Stringfigure.vue'
+import packaging from '../components/packaging.vue'
+import treemap from '../components/treemap.vue'
+import rose from '../components/rose.vue'
+// rose
 Vue.use(VueRouter)
 let router = new VueRouter({
   mode: 'history',
@@ -38,6 +42,18 @@ let router = new VueRouter({
     },{
       path: '/skillmap',
       component: skillmap
+    },{
+      path: '/Stringfigure',
+      component: Stringfigure
+    },{
+      path: '/packaging',
+      component: packaging
+    },{
+      path: '/treemap',
+      component: treemap
+    },{
+      path: '/rose',
+      component: rose
     }
   ]
 })

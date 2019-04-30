@@ -21,6 +21,28 @@
       <div class="son">4</div>
       <div class="son">5</div>
     </div>
+
+
+    <div style="margin-top:20px;width:305px;height:120px">
+        <div class="box-right-same">
+            <div class="full">
+                <p>DOM文档流中，图片定宽在右侧，视觉呈现也在右侧，顺便表现此时一致。</p>
+            </div>
+            <img src="1.jpg" class="img">
+        </div>
+    </div>
+
+    <div class="fatherone">
+      <div class="sonone">
+
+      </div>
+    </div>
+
+    <!-- <div class="fathertwo">
+      <div class="sontwo">
+
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -48,6 +70,47 @@ export default {
 </script>
 
 <style>
+  .fatherone{
+		width: 300px;
+		height: 200px;
+		background: red;
+	}
+	.sonone{
+		margin: 0 -100px;
+		height: 100px;
+		background: yellow;
+	}
+  .fathertwo{
+    background: green;
+    height: 200px;
+
+    overflow: hidden;
+    width: 200px;
+  }
+  .sontwo{
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+
+.box-right-same{
+  width: 305px;
+}
+.box-right-same > .full {
+    width: 100%;
+    float: left;
+}
+.box-right-same > .full > p {
+    margin-right: 140px;
+}
+.box-right-same > img {
+    float: left;
+    margin-left: -128px;
+    width: 128px;
+    height: 90px;
+}
+
 .box{
 	width: 200px;
 	text-align: center;
