@@ -57,7 +57,12 @@ module.exports = [{
     name: '导航二',
     componentName: 'BasicLayout',
     id:'navigationTwo',
-    i: 'el-icon-menu'
+    i: 'el-icon-menu',
+    sub: [
+      {
+        name: '拖拽',
+        componentName: 'DragDrop'
+      }]
   },
   {
     name: '导航三',

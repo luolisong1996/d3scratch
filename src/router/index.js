@@ -14,6 +14,8 @@ import Stringfigure from '../components/Stringfigure.vue'
 import packaging from '../components/packaging.vue'
 import treemap from '../components/treemap.vue'
 import rose from '../components/rose.vue'
+
+import DragDrop from '../components/daohang/DragDrop.vue'
 // rose
 Vue.use(VueRouter)
 let router = new VueRouter({
@@ -54,6 +56,9 @@ let router = new VueRouter({
     },{
       path: '/rose',
       component: rose
+    },{
+      path: '/DragDrop',
+      component: DragDrop
     }
   ]
 })
